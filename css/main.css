@@ -256,3 +256,13 @@ body {
 .nav-item {
     padding-left: 10px;
 }
+
+#paypal-button-container {
+    text-align: center;
+}
+
+.price-style {
+  background-color: white;
+  text-align: center;
+  font-size: 30px;
+}
