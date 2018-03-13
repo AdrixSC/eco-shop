@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #DDE1E6!important;
 }
@@ -186,4 +190,12 @@ body {
 .stars {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+#eye {
+    width: 30px;
+}
+
+#eye:hover {
+    background-color: #5ac6f8;
 }
