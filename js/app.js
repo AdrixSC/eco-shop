@@ -37,7 +37,7 @@ paintDataJson = (json, Json) => {
                         </div>
                         <span class="text">${element.title}</span>
                         <div class="price">$${element.price} mxn</div>                        
-                        <a href="#modal" data-toggle="modal" type="button" class="btn btn-outline-info elements-data border-0" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
+                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
                              <i class="fas fa-eye elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"></i>
                         </a>                          
                     <div class="buttonShop">Comprar</div>
@@ -59,7 +59,7 @@ paintDataJson = (json, Json) => {
                         </div>
                         <div class="text">${element.title}</div>
                         <div class="price">$${element.price} mxn</div>
-                        <a href="#modal" data-toggle="modal" type="button" class="btn btn-outline-info elements-data border-0" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
+                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
                              <i class="fas fa-eye elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"></i>
                         </a> 
                     <div class="buttonShop">Comprar</div>
