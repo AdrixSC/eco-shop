@@ -29,19 +29,20 @@ paintDataJson = (json, Json) => {
     productsResultsEco.forEach((element, index) => {
         if (index < 25) {
             let output = `
-                <div class="float-left ml-5 mb-5 bg-white rounded">
+                <div class="col-md-3">
                     <div class="boxInner">
                         <div class="image">
                             <img src="${element.thumbnail}" alt="${element.title}">
                         </div>
                         <span class="text">${element.title}</span>
                         <div class="price">${element.price}$ mxn</div>
-                        <a href="product.html">
+                        <a href="#modal" data-toggle="modal">
                             <i class="fas fa-eye elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"></i>
+
                         </a>
                     <div class="buttonShop">Comprar</div>
                     </div>
-                </div>              
+                </div>
             `
             container.insertAdjacentHTML('beforeend', output);
         }
@@ -50,21 +51,21 @@ paintDataJson = (json, Json) => {
     productsResultsSust.forEach((element, index) => {
         if (index < 25) {
             let output = `
-                <div class="float-left ml-5 mb-5 bg-white rounded">
+                <div class="col-md-3">
                     <div class="boxInner">
                         <div class="image">
                             <img src="${element.thumbnail}" alt="${element.title}">
                         </div>
                         <div class="text">${element.title}</div>
                         <div class="price">${element.price}$ mxn</div>
-                        <a href="product.html">
+                        <a href="#modal" data-toggle="modal">
                             <i class="fas fa-eye elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"></i>
                         </a>
                     <div class="buttonShop">Comprar</div>
                     </div>
-                </div>                                      
+                </div>
             `
-            container.insertAdjacentHTML('beforeend', output);            
+            container.insertAdjacentHTML('beforeend', output);
         }
     })
     let elementsData = document.getElementsByClassName('elements-data');
@@ -97,5 +98,6 @@ getInfo = (e) => {
 // paintInfoModal = (img, title, rating, state, description, price) => {
 //     console.log(img, title, rating, state, description, price);
 // }
+
 
 

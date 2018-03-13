@@ -1,179 +1,189 @@
-	body {
-	    background-color: #DDE1E6!important;
-	}
-	
-	.menu {
-	    background-color: white;
-	    margin-bottom: 50px;
-	    color: #0084CD;
-	    font-weight: lighter;
-	    padding: 10px;
-	}
-	
-	.ecommerce {
-	    overflow: hidden;
-	}
-	
-	.ecommerce ul {
-	    float: left;
-	}
-	
-	.ecommerce ul li {
-	    display: inline-block;
-	    padding-top: 14px;
-	    padding-left: 15px;
-	    color: #777777;
-	    font-weight: lighter;
-	    cursor: pointer;
-	}
-	
-	.ecommerce h1 {
-	    float: left;
-	}
-	
-	.itemsNumber {
-	    float: right;
-	    padding-top: 14px;
-	}
-	
-	.boxGeneral {
-	    padding: 30px 0px;
-	    background-color: white;
-	}
-	
-	.boxInner {
-	    height: 410px;
-	    text-align: center;
-	}
-	
-	.boxInner:hover {
-	    -webkit-box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
-	    -moz-box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
-	    box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
-	}
-	
-	.boxInner .text {
-	    font-size: 20px;
-	    color: #0c4d6c;
-	    font-size: 40px;
-	    margin-top: 20px;
-	    padding: 5px;
-	    font-weight: lighter;
-	    text-align: center;
-	}
-	
-	.boxInner .image img {
-	    height: 200px;
-	    width: auto;
-	}
-	
-	.price {
-	    color: gray;
-	    font-weight: bold;
-	    margin: 10px 0px;
-	}
-	
-	.buttonShop {
-	    background-color: #0c4d6c;
-	    color: white;
-	    line-height: 38px;
-	    margin: 0 auto;
-	    width: 120px;
-	    height: 40px;
-	    border-radius: 28px;
-	    transition: all 1s;
-	}
-	
-	.buttonShop:hover {
-	    cursor: pointer;
-	    background-color: #1583b7;
-	}
-	
-	.imageProduct {
-	    text-align: center;
-	}
-	
-	.imageProduct img {
-	    width: 70%;
-	    height: auto;
-	}
-	
-	.titleProduct {
-	    color: #0c4d6c;
-	    font-size: 40px;
-	    font-weight: lighter;
-	}
-	
-	.priceProduct {
-	    color: gray;
-	    font-size: 35px;
-	}
-	
-	.quantity {
-	    float: left;
-	    width: 130px;
-	    margin-top: 20px;
-	}
-	
-	.quantity .minus {
-	    float: left;
-	    height: 45px;
-	}
-	
-	.quantity .plus {
-	    float: left;
-	    height: 45px;
-	}
-	
-	.quantity .quantityInner {
-	    width: 50px;
-	    display: inline-block;
-	    box-shadow: none;
-	    height: 45px;
-	    vertical-align: bottom;
-	    text-align: center;
-	    float: left;
-	    padding-left: 0;
-	    padding-right: 0;
-	}
-	
-	.shoProduct {
-	    background-color: #0c4d6c;
-	    color: white;
-	    line-height: 38px;
-	    margin: 0 auto;
-	    width: 120px;
-	    height: 40px;
-	    border-radius: 28px;
-	    transition: all 1s;
-	    float: left;
-	    margin-top: 20px;
-	    text-align: center;
-	}
-	
-	.shoProduct:hover {
-	    cursor: pointer;
-	    background-color: #1583b7;
-	}
-	
-	.content {
-	    overflow: hidden;
-	}
+body {
+    background-color: #DDE1E6!important;
+}
 
-	.fa-shopping-cart {
-		margin-top: 16px;
-	}
+.menu {
+    background-color: white;
+    margin-bottom: 50px;
+    color: #0084CD;
+    font-weight: lighter;
+    padding: 10px;
+}
 
-	.modal-header .image img {
-	    height: 200px;
-	    width: auto;
-	}
+.ecommerce {
+    overflow: hidden;
+}
 
-	.description-modal {
-		display: block;
-	}
+.ecommerce ul {
+    float: left;
+}
 
-	.stars {
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+.ecommerce ul li {
+    display: inline-block;
+    padding-top: 14px;
+    padding-left: 15px;
+    color: #777777;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.ecommerce h1 {
+    float: left;
+}
+
+.itemsNumber {
+    float: right;
+    padding-top: 14px;
+}
+
+.boxGeneral {
+    padding: 30px 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.boxGeneral .item {
+    width: 20%;
+    float: left;
+}
+
+.boxInner {
+    height: 410px;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.boxInner:hover {
+    -webkit-box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
+    -moz-box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
+    box-shadow: -4px 6px 14px -2px rgba(161, 155, 161, 1);
+}
+
+.boxInner .text {
+    color: #0c4d6c;
+    font-size: 16px;
+    margin-top: 20px;
+    line-height: 21px;
+    font-weight: lighter;
+    text-align: center;
+    height: 60px;
+    padding: 5px;
+}
+
+.boxInner .image img {
+    height: 200px;
+    width: auto;
+    padding-top: 12px;
+}
+
+.price {
+    color: gray;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.buttonShop {
+    background-color: #0c4d6c;
+    color: white;
+    line-height: 38px;
+    margin: 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 28px;
+    transition: all 1s;
+}
+
+.buttonShop:hover {
+    cursor: pointer;
+    background-color: #1583b7;
+}
+
+.imageProduct {
+    text-align: center;
+}
+
+.imageProduct img {
+    width: 70%;
+    height: auto;
+}
+
+.titleProduct {
+    color: #0c4d6c;
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.priceProduct {
+    color: gray;
+    font-size: 35px;
+}
+
+.quantity {
+    float: left;
+    width: 130px;
+    margin-top: 20px;
+}
+
+.quantity .minus {
+    float: left;
+    height: 45px;
+}
+
+.quantity .plus {
+    float: left;
+    height: 45px;
+}
+
+.quantity .quantityInner {
+    width: 50px;
+    display: inline-block;
+    box-shadow: none;
+    height: 45px;
+    vertical-align: bottom;
+    text-align: center;
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.shoProduct {
+    background-color: #0c4d6c;
+    color: white;
+    line-height: 38px;
+    margin: 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 28px;
+    transition: all 1s;
+    float: left;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.shoProduct:hover {
+    cursor: pointer;
+    background-color: #1583b7;
+}
+
+.content {
+    overflow: hidden;
+}
+
+.fa-shopping-cart {
+    margin-top: 16px;
+}
+
+.modal-header .image img {
+    height: 200px;
+    width: auto;
+}
+
+.description-modal {
+    display: block;
+}
+
+.stars {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
