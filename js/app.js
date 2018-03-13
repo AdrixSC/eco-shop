@@ -62,7 +62,7 @@ paintDataJson = (json, Json) => {
                              <i class="fas fa-eye elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"></i>
                         </a>  
 
-                    <div class="buttonShop">Comprar</div>
+                    <div class="buttonShop">Agregar a carrito</div>
                     </div>
                 </div>
             `
@@ -148,6 +148,25 @@ paintInfoModal = (img, title, rating, state, description, price) => {
                         <div class="priceProduct">$ ${price} mxn</div>
     `;
 }
+
+showSectionCart = (e) => {
+    const containerCart = document.getElementById("container-cart");
+    const containerCard = document.getElementById("container-card");
+    console.log(containerCart, containerCard)
+    console.log(containerCart.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")){
+        console.log("si entra")
+        containerCart.classList.remove("d-none");
+        containerCard.classList.remove("d-block");
+        containerCard.classList.add("d-none");
+    };
+};
+
+let cart = document.getElementById("image-cart")
+cart.addEventListener("click", showSectionCart);
+
+
+
 
 
 

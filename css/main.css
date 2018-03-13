@@ -10,10 +10,6 @@ body {
     padding: 10px;
 }
 
-.ecommerce {
-    overflow: hidden;
-}
-
 .ecommerce ul {
     float: left;
 }
@@ -27,7 +23,7 @@ body {
     cursor: pointer;
 }
 
-.ecommerce h1 {
+.ecommerce h1 img{
     float: left;
 }
 
@@ -86,6 +82,7 @@ body {
 .buttonShop {
     background-color: #0c4d6c;
     color: white;
+    font-size: 14px;
     line-height: 38px;
     margin: 0 auto;
     width: 120px;
@@ -116,7 +113,11 @@ body {
 
 .priceProduct {
     color: gray;
-    font-size: 35px;
+    font-size: 15px;
+}
+
+.priceSubtotal {
+    font-size: 30px;
 }
 
 .quantity {
@@ -168,10 +169,16 @@ body {
 
 .content {
     overflow: hidden;
+    display: table-caption;
 }
 
 .fa-shopping-cart {
     margin-top: 16px;
+}
+
+.fa-shopping-cart:hover {
+    margin-top: 16px;
+    cursor: pointer;
 }
 
 .modal-header .image img {
@@ -186,4 +193,8 @@ body {
 .stars {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.logo {
+    width: 25%;
 }
