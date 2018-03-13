@@ -1,3 +1,24 @@
+
+
+//Add the car
+const addProducts = document.getElementById('products');
+
+ addCar = ()=> {
+    e.preventDefaul();
+     
+    if(e.target.classList.contains('add-car')){
+         const product = e.target.parentElement.parentElement;
+
+
+    }
+}
+
+addProductsCar = (addProducts)=>{
+    
+
+}
+
+
 const container = document.getElementById('container');
 window.addEventListener('load', () => {
     getJson();
@@ -24,6 +45,7 @@ paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);    
 
     products.forEach(element => {    
+
             let output = `
                 <div class="col-md-3 mb-3">
                     <div class="boxInner">
@@ -82,4 +104,23 @@ paintInfoModal = (dataSet, description) => {
                         <p>${description}</p>
                         <div class="priceProduct">$ ${dataSet.price} mxn</div>
     `;
+
 }
+
+showSectionCart = (e) => {
+    const containerCart = document.getElementById("container-cart");
+    const containerCard = document.getElementById("container-card");
+    console.log(containerCart, containerCard)
+    console.log(containerCart.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")){
+        console.log("si entra")
+        containerCart.classList.remove("d-none");
+        containerCard.classList.remove("d-block");
+        containerCard.classList.add("d-none");
+    };
+};
+
+let cart = document.getElementById("image-cart")
+cart.addEventListener("click", showSectionCart);
+
+
