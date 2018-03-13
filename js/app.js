@@ -18,3 +18,10 @@ addProductsCar = (addProducts)=>{
 }
 
 
+
+
+
+
+addCar();
+
+
