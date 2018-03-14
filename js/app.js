@@ -86,28 +86,34 @@ chageButtonStatus = (e) => {
         button.innerText = 'Quitar del carrito';
     } else {
         removeCounter();
-        removeItems();
+        removeItems(button);
         button.innerText = 'Agregar a carrito';
     }
 }
 
+const arrayCart = [];
+
 addItems = (button) => {
     const containerCart = document.getElementById('container-cart');
-    const arrayCart = [];
 
-    // const img = button.dataset.img;
-    // const title = button.dataset.title;
-    // const price = button.dataset.price;
-
-    let objItems ={
+    const objItems ={
         img: button.dataset.img,
         title: button.dataset.title,
-        price: button.dataset.price
+        price: button.dataset.price,
+        id: button.dataset.id
     }
+    
+    arrayCart.push(objItems); 
 
     
+    // delete wooooooo
     
-    
+    // const indexObj = arrayCart.indexOf(objItems);
+
+    // arrayCart.splice(indexObj, 1);
+
+    // console.log(arrayCart);
+       
     
     // let cartTemplate = ``;
     // cartTemplate += `
@@ -126,8 +132,17 @@ addItems = (button) => {
     // containerCart.insertAdjacentHTML('beforeend', cartTemplate);    
 }
 
-removeItems = () => {
 
+
+
+removeItems = (button) => {
+    // console.log(button);
+    // const indexObj = arrayCart.indexOf(objItems);
+
+    // arrayCart.splice(indexObj, 1);
+
+    // console.log(arrayCart);
+    
 }
 
 addCounter = () => {
