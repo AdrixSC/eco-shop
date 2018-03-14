@@ -8,7 +8,7 @@ body {
 
 .menu {
     background-color: white;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     color: #0084CD;
     font-weight: lighter;
     padding: 10px;
@@ -27,7 +27,7 @@ body {
     cursor: pointer;
 }
 
-.ecommerce h1 img{
+.ecommerce h1 img {
     float: left;
 }
 
@@ -199,15 +199,31 @@ body {
     padding-bottom: 20px;
 }
 
-
 #eye {
     width: 30px;
 }
 
 #eye:hover {
     background-color: #5ac6f8;
-
 }
+
 .logo {
     width: 25%;
+}
+
+.search {
+    margin-top: 10px;
+}
+
+.search:hover {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.input-group-text {
+    cursor: pointer;
+}
+
+.w-100 {
+    width: 30%;
 }

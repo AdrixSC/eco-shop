@@ -15,6 +15,8 @@
 
 // }
 
+
+
 const container = document.getElementById('container');
 window.addEventListener('load', () => {
     getJson();
@@ -129,7 +131,7 @@ addItems = (button) => {
     //                     </div>
     //                 </div>    
     // `;
-    // containerCart.insertAdjacentHTML('beforeend', cartTemplate);    
+    // containerCart.insertAdjacentHTML('beforeend', cartTemplate);  
 }
 
 
@@ -188,8 +190,8 @@ paintInfoModal = (dataSet, description) => {
     titleStars.innerHTML = `
                         <h5 class="modal-title">${dataSet.title}</h5>
                         <div class="stars">${dataSet.rating}
-                            <i class="fas fa-star"></i>                           
-                        </div>         
+                            <i class="fas fa-star"></i>
+                        </div>
     `;
 
     modalBody.innerHTML = `
@@ -200,17 +202,103 @@ paintInfoModal = (dataSet, description) => {
 
 }
 
+const containerCart = document.getElementById("container-cart");
+const containerCard = document.getElementById("container-card");
+
 showSectionCart = (e) => {
-    const containerCart = document.getElementById("container-cart");
-    const containerCard = document.getElementById("container-card");
-    // console.log(containerCart, containerCard)
-    // console.log(containerCart.classList.contains("d-none"))
+
+    console.log(containerCart.classList.contains("d-none"))
     if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
-        containerCart.classList.remove("d-none");
-        containerCard.classList.remove("d-block");
-        containerCard.classList.add("d-none");
+
+        const containerCart = document.getElementById("container-cart");
+        const containerCard = document.getElementById("container-card");
+        // console.log(containerCart, containerCard)
+        // console.log(containerCart.classList.contains("d-none"))
+        if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
+
+            containerCart.classList.remove("d-none");
+            containerCard.classList.remove("d-block");
+            containerCard.classList.add("d-none");
+        } else {
+            containerCart.classList.remove("d-block");
+            containerCard.classList.remove("d-none");
+            containerCard.classList.add("d-block");
+        }
     };
 };
 
 let cart = document.getElementById("image-cart")
+
 cart.addEventListener("click", showSectionCart);
+
+showSectionShop = (e) => {
+    console.log("si entra")
+    console.log("cart", containerCart.classList.contains("d-none"))
+    console.log("card", containerCard.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true) {
+        containerCart.classList.remove("d-none");
+        containerCard.classList.remove("d-none");
+        containerCard.classList.add("d-block");
+    };
+};
+
+let shop = document.getElementById("shop");
+shop.addEventListener("click", showSectionShop)
+
+
+const containerMenu = document.getElementById("container-menu");
+const containerInput = document.getElementById("container-input");
+
+showInput = (e) => {
+    if (containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")) {
+        containerInput.classList.remove("d-none");
+        containerMenu.classList.remove("d-block");
+        containerMenu.classList.add("d-none");
+    } else {
+        console.log("chido")
+        containerInput.classList.remove("d-block");
+        containerMenu.classList.remove("d-none");
+        containerMenu.classList.add("d-block");
+    }
+};
+
+let btnSearch = document.getElementById("btn-search");
+btnSearch.addEventListener("click", showInput);
+
+showMenu = (e) => {
+    containerInput.innerText = "";
+    containerInput.innerHTML = `<div id="container-menu" class="container d-block">
+    <nav class="row menu">
+        <div class="col-md-6">
+            <div class="ecommerce">
+                <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
+                <ul>
+                    <a id="shop"><li>Shop</li></a>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="itemsNumber">0 ITEMS $0.00</div>
+        </div>
+        <div class="col-md-2">
+            <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="col-md-1 search">
+            <a id="btn-search"><i class="fas fa-search"></i></a>
+        </div>
+    </nav>
+</div>`
+    console.log("menu", containerMenu.classList.contains("d-none"));
+    console.log("input", containerInput.classList.contains("d-block"))
+        /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+            containerMenu.classList.remove("d-none");
+            containerMenu.classList.add("d-block");
+            containerInput.classList.remove("d-block");
+
+        };*/
+};
+
+let btnCloseInput = document.getElementById("close-input");
+btnCloseInput.addEventListener("click", showMenu);
