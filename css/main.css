@@ -227,3 +227,15 @@ body {
 .w-100 {
     width: 30%;
 }
+
+.copy {
+    background-color: #0c4d6c;
+    color: white;
+    height: 50px;
+}
+
+.copy p {
+    text-align: center;
+    padding: 12px;
+    padding-left: 400px;
+}
