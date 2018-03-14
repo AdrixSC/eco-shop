@@ -6,16 +6,12 @@ addCar = () => {
 
     if (e.target.classList.contains('add-car')) {
         const product = e.target.parentElement.parentElement;
-
-
     }
 }
 
 addProductsCar = (addProducts) => {
 
-
 }
-
 
 const container = document.getElementById('container');
 window.addEventListener('load', () => {
@@ -41,9 +37,7 @@ getJson = (e) => {
 
 paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);
-
     products.forEach(element => {
-
         let output = `
                 <div class="col-md-3 mb-3">
                     <div class="boxInner">
@@ -92,9 +86,7 @@ addItems = (button) => {
     const img = button.dataset.img;
     const title = button.dataset.title;
     const price = button.dataset.price;
-
-    console.log(img, title,price);  
-    
+    console.log(img, title, price);
 }
 
 removeItems = () => {
@@ -144,8 +136,8 @@ paintInfoModal = (dataSet, description) => {
     titleStars.innerHTML = `
                         <h5 class="modal-title">${dataSet.title}</h5>
                         <div class="stars">${dataSet.rating}
-                            <i class="fas fa-star"></i>                           
-                        </div>         
+                            <i class="fas fa-star"></i>
+                        </div>
     `;
 
     modalBody.innerHTML = `
@@ -162,22 +154,23 @@ const containerCard = document.getElementById("container-card");
 showSectionCart = (e) => {
 
     console.log(containerCart.classList.contains("d-none"))
-    if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")){
-
-    const containerCart = document.getElementById("container-cart");
-    const containerCard = document.getElementById("container-card");
-    // console.log(containerCart, containerCard)
-    // console.log(containerCart.classList.contains("d-none"))
     if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
 
-        containerCart.classList.remove("d-none");
-        containerCard.classList.remove("d-block");
-        containerCard.classList.add("d-none");
-    } else {
-        containerCart.classList.remove("d-block");
-        containerCard.classList.remove("d-none");
-        containerCard.classList.add("d-block");
-    }
+        const containerCart = document.getElementById("container-cart");
+        const containerCard = document.getElementById("container-card");
+        // console.log(containerCart, containerCard)
+        // console.log(containerCart.classList.contains("d-none"))
+        if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
+
+            containerCart.classList.remove("d-none");
+            containerCard.classList.remove("d-block");
+            containerCard.classList.add("d-none");
+        } else {
+            containerCart.classList.remove("d-block");
+            containerCard.classList.remove("d-none");
+            containerCard.classList.add("d-block");
+        }
+    };
 };
 
 let cart = document.getElementById("image-cart")
@@ -188,7 +181,7 @@ showSectionShop = (e) => {
     console.log("si entra")
     console.log("cart", containerCart.classList.contains("d-none"))
     console.log("card", containerCard.classList.contains("d-none"))
-    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true){
+    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true) {
         containerCart.classList.remove("d-none");
         containerCard.classList.remove("d-none");
         containerCard.classList.add("d-block");
@@ -203,7 +196,7 @@ const containerMenu = document.getElementById("container-menu");
 const containerInput = document.getElementById("container-input");
 
 showInput = (e) => {
-    if(containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")){
+    if (containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")) {
         containerInput.classList.remove("d-none");
         containerMenu.classList.remove("d-block");
         containerMenu.classList.add("d-none");
@@ -240,20 +233,18 @@ showMenu = (e) => {
         </div>
         <div class="col-md-1 search">
             <a id="btn-search"><i class="fas fa-search"></i></a>
-            
         </div>
     </nav>
 </div>`
     console.log("menu", containerMenu.classList.contains("d-none"));
     console.log("input", containerInput.classList.contains("d-block"))
-    /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
-        containerMenu.classList.remove("d-none");
-        containerMenu.classList.add("d-block");
-        containerInput.classList.remove("d-block");
+        /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+            containerMenu.classList.remove("d-none");
+            containerMenu.classList.add("d-block");
+            containerInput.classList.remove("d-block");
 
-    };*/
+        };*/
 };
 
 let btnCloseInput = document.getElementById("close-input");
 btnCloseInput.addEventListener("click", showMenu);
-

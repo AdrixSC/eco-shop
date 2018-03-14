@@ -27,7 +27,7 @@ body {
     cursor: pointer;
 }
 
-.ecommerce h1 img{
+.ecommerce h1 img {
     float: left;
 }
 
@@ -199,7 +199,6 @@ body {
     padding-bottom: 20px;
 }
 
-
 #eye {
     width: 30px;
 }
@@ -208,7 +207,6 @@ body {
     background-color: #5ac6f8;
 }
 
-}
 .logo {
     width: 25%;
 }
