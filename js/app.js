@@ -240,22 +240,20 @@ showMenu = (e) => {
         </div>
         <div class="col-md-1 search">
             <a id="btn-search"><i class="fas fa-search"></i></a>
+            
         </div>
     </nav>
 </div>`
-    /*console.log("menu", containerMenu.classList.contains("d-none"));
+    console.log("menu", containerMenu.classList.contains("d-none"));
     console.log("input", containerInput.classList.contains("d-block"))
-    if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+    /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
         containerMenu.classList.remove("d-none");
         containerMenu.classList.add("d-block");
         containerInput.classList.remove("d-block");
-    }*/
-}
+
+    };*/
+};
 
 let btnCloseInput = document.getElementById("close-input");
 btnCloseInput.addEventListener("click", showMenu);
-
-
-
-cart.addEventListener("click", showSectionCart);
 
