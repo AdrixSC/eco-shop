@@ -1,35 +1,33 @@
 //Add the car
-const addProducts = document.getElementById('products');
+// const addProducts = document.getElementById('products');
 
-addCar = () => {
-    e.preventDefaul();
+// addCar = () => {
+//     e.preventDefaul();
 
-    if (e.target.classList.contains('add-car')) {
-        const product = e.target.parentElement.parentElement;
+//     if (e.target.classList.contains('add-car')) {
+//         const product = e.target.parentElement.parentElement;
+
+//     }
+// }
+
+// addProductsCar = (addProducts) => {
 
 
-    }
-}
-
-addProductsCar = (addProducts) => {
-
-
-}
-
+// }
 
 const container = document.getElementById('container');
 window.addEventListener('load', () => {
     getJson();
 })
 
-
+let data;
 getJson = (e) => {
     fetch(`https://api.mercadolibre.com/sites/MLM/search?q=ecologico`)
         .then(response => {
             response.json().then(json => {
                 fetch('https://api.mercadolibre.com/sites/MLM/search?q=sustentable').then(response => {
                     response.json().then(Json => {
-                        paintDataJson(json, Json)
+                        paintDataJson(json, Json);                                     
                     })
                 })
             })
@@ -39,11 +37,16 @@ getJson = (e) => {
         });
 }
 
+// const data = (json, Json) => {
+//     const dataArray = json.results.concat(Json.results);
+//     console.log(dataArray);    
+//     return dataArray;
+// }
+
+
 paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);
-
     products.forEach(element => {
-
         let output = `
                 <div class="col-md-3 mb-3">
                     <div class="boxInner">
@@ -55,7 +58,7 @@ paintDataJson = (json, Json) => {
                         <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"> 
                             <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">                    
                         </a>
-                        <div data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
+                        <div data-id="${element.id}" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
             `
         container.insertAdjacentHTML('beforeend', output);
@@ -89,12 +92,38 @@ chageButtonStatus = (e) => {
 }
 
 addItems = (button) => {
-    const img = button.dataset.img;
-    const title = button.dataset.title;
-    const price = button.dataset.price;
+    const containerCart = document.getElementById('container-cart');
+    const arrayCart = [];
 
-    console.log(img, title,price);  
+    // const img = button.dataset.img;
+    // const title = button.dataset.title;
+    // const price = button.dataset.price;
+
+    let objItems ={
+        img: button.dataset.img,
+        title: button.dataset.title,
+        price: button.dataset.price
+    }
+
     
+    
+    
+    
+    // let cartTemplate = ``;
+    // cartTemplate += `
+    //                 <div class="row boxGeneral">
+    //                     <div class="col-md-6">
+    //                         <div class="imageProduct">
+    //                             <img src="${img}" alt="${title}">
+    //                         </div>
+    //                     </div>
+    //                     <div class="col-md-6">
+    //                         <div class="titleProduct">${title}</div>
+    //                         <div class="priceProduct">Precio Unitario $${price}</div>                                                      
+    //                     </div>
+    //                 </div>    
+    // `;
+    // containerCart.insertAdjacentHTML('beforeend', cartTemplate);    
 }
 
 removeItems = () => {
