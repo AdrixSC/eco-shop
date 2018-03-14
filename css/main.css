@@ -8,9 +8,9 @@ body {
 
 .menu {
     background-color: white;
-    margin-bottom: 10px;
     color: #0084CD;
     font-weight: lighter;
+    margin-bottom: 10px;
     padding: 10px;
 }
 
@@ -20,11 +20,11 @@ body {
 
 .ecommerce ul li {
     display: inline-block;
+    color: #777777;
+    cursor: pointer;
+    font-weight: lighter;
     padding-top: 14px;
     padding-left: 15px;
-    color: #777777;
-    font-weight: lighter;
-    cursor: pointer;
 }
 
 .ecommerce h1 img {
@@ -37,21 +37,21 @@ body {
 }
 
 .boxGeneral {
-    padding: 30px 0px;
     background-color: white;
+    padding: 30px 0px;
     overflow: hidden;
 }
 
 .boxGeneral .item {
-    width: 20%;
     float: left;
+    width: 20%;
 }
 
 .boxInner {
     height: 410px;
-    text-align: center;
-    overflow: hidden;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-align: center;
 }
 
 .boxInner:hover {
@@ -63,18 +63,18 @@ body {
 .boxInner .text {
     color: #0c4d6c;
     font-size: 16px;
-    margin-top: 20px;
-    line-height: 21px;
     font-weight: lighter;
-    text-align: center;
     height: 60px;
+    line-height: 21px;
+    margin-top: 20px;
     padding: 5px;
+    text-align: center;
 }
 
 .boxInner .image img {
     height: 200px;
-    width: auto;
     padding-top: 12px;
+    width: auto;
 }
 
 .price {
