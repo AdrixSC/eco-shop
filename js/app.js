@@ -21,14 +21,14 @@ window.addEventListener('load', () => {
     getJson();
 })
 
-let data;
+
 getJson = (e) => {
     fetch(`https://api.mercadolibre.com/sites/MLM/search?q=ecologico`)
         .then(response => {
             response.json().then(json => {
                 fetch('https://api.mercadolibre.com/sites/MLM/search?q=sustentable').then(response => {
                     response.json().then(Json => {
-                        paintDataJson(json, Json);                                     
+                        paintDataJson(json, Json);
                     })
                 })
             })
@@ -47,6 +47,8 @@ getJson = (e) => {
 
 paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);
+    localStorage.setItem('products', JSON.stringify(products));
+
     products.forEach(element => {
         let output = `
                 <div class="col-md-3 mb-3">
@@ -59,7 +61,7 @@ paintDataJson = (json, Json) => {
                         <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"> 
                             <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">                    
                         </a>
-                        <div data-id="${element.id}" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
+                        <div data-id="${element.id}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
             `
         container.insertAdjacentHTML('beforeend', output);
@@ -92,58 +94,44 @@ chageButtonStatus = (e) => {
     }
 }
 
-const arrayCart = [];
+// console.log(localStorage.getItem("cart"));
 
 addItems = (button) => {
-    const containerCart = document.getElementById('container-cart');
-
-    const objItems ={
-        img: button.dataset.img,
-        title: button.dataset.title,
-        price: button.dataset.price,
-        id: button.dataset.id
+    const storage = localStorage.getItem("cart");
+    // console.log(localStorage.getItem("cart"));    
+    let arrayCart;
+    if (storage === null) {
+        arrayCart = [];
+    } else {
+        arrayCart = JSON.parse(storage);
     }
-    
-    arrayCart.push(objItems); 
-
-    
-    // delete wooooooo
-    
-    // const indexObj = arrayCart.indexOf(objItems);
-
-    // arrayCart.splice(indexObj, 1);
-
-    // console.log(arrayCart);
-       
-    
-    // let cartTemplate = ``;
-    // cartTemplate += `
-    //                 <div class="row boxGeneral">
-    //                     <div class="col-md-6">
-    //                         <div class="imageProduct">
-    //                             <img src="${img}" alt="${title}">
-    //                         </div>
-    //                     </div>
-    //                     <div class="col-md-6">
-    //                         <div class="titleProduct">${title}</div>
-    //                         <div class="priceProduct">Precio Unitario $${price}</div>                                                      
-    //                     </div>
-    //                 </div>    
-    // `;
-    // containerCart.insertAdjacentHTML('beforeend', cartTemplate);  
+    arrayCart.push(button.dataset.id);
+    localStorage.setItem('cart', JSON.stringify(arrayCart));
 }
 
 
-
-
 removeItems = (button) => {
-    // console.log(button);
-    // const indexObj = arrayCart.indexOf(objItems);
+    let cartAdd = JSON.parse(localStorage.getItem('cart'));
+    const indexDelete = cartAdd.indexOf(button.dataset.id);
+    cartAdd.splice(indexDelete, 1);
+    localStorage.setItem('cart', JSON.stringify(cartAdd));  
+    filterProducst();
+}
 
-    // arrayCart.splice(indexObj, 1);
+filterProducst = (productsSelection) => {
+    // localStorage.setItem('products', JSON.stringify(products));
+    const cart = JSON.parse(localStorage.getItem('cart'));
 
-    // console.log(arrayCart);
-    
+    let data = JSON.parse(localStorage.getItem('products'));
+
+    let products = cart.map(id =>{
+        return data.find( element => {
+            return element.id === id;
+        });
+    });
+
+    console.log(products);    
+
 }
 
 addCounter = () => {
