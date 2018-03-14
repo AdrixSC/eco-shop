@@ -161,13 +161,38 @@ let btnSearch = document.getElementById("btn-search");
 btnSearch.addEventListener("click", showInput);
 
 showMenu = (e) => {
+    containerInput.innerText = "";
+    containerInput.innerHTML = `<div id="container-menu" class="container d-block">
+    <nav class="row menu">
+        <div class="col-md-6">
+            <div class="ecommerce">
+                <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
+                <ul>
+                    <a id="shop"><li>Shop</li></a>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="itemsNumber">0 ITEMS $0.00</div>
+        </div>
+        <div class="col-md-2">
+            <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="col-md-1 search">
+            <a id="btn-search"><i class="fas fa-search"></i></a>
+            
+        </div>
+    </nav>
+</div>`
     console.log("menu", containerMenu.classList.contains("d-none"));
     console.log("input", containerInput.classList.contains("d-block"))
-    if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+    /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
         containerMenu.classList.remove("d-none");
         containerMenu.classList.add("d-block");
         containerInput.classList.remove("d-block");
-    };
+    };*/
 };
 
 let btnCloseInput = document.getElementById("close-input");
