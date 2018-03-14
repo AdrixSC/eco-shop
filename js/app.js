@@ -1,20 +1,18 @@
-
-
 //Add the car
 const addProducts = document.getElementById('products');
 
- addCar = ()=> {
+addCar = () => {
     e.preventDefaul();
-     
-    if(e.target.classList.contains('add-car')){
-         const product = e.target.parentElement.parentElement;
+
+    if (e.target.classList.contains('add-car')) {
+        const product = e.target.parentElement.parentElement;
 
 
     }
 }
 
-addProductsCar = (addProducts)=>{
-    
+addProductsCar = (addProducts) => {
+
 
 }
 
@@ -42,11 +40,11 @@ getJson = (e) => {
 }
 
 paintDataJson = (json, Json) => {
-    const products = json.results.concat(Json.results);    
+    const products = json.results.concat(Json.results);
 
-    products.forEach(element => {    
+    products.forEach(element => {
 
-            let output = `
+        let output = `
                 <div class="col-md-3 mb-3">
                     <div class="boxInner">
                         <div class="image">
@@ -57,13 +55,64 @@ paintDataJson = (json, Json) => {
                         <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"> 
                             <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">                    
                         </a>
-                        <div class="buttonShop">Comprar</div>                   
+                        <div data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
-            `   
-            container.insertAdjacentHTML('beforeend', output);        
+            `
+        container.insertAdjacentHTML('beforeend', output);
     })
     let elementsData = document.getElementsByClassName('elements-data');
     elementEvent(elementsData);
+
+    let buttonAddCart = document.getElementsByClassName('buttonShop');
+    converToArray(buttonAddCart);
+}
+
+converToArray = (buttonAddCart) => {
+    let addItemsId = Array.from(buttonAddCart);
+    addItemsId.forEach(item => {
+        item.addEventListener('click', chageButtonStatus);
+    })
+
+}
+
+chageButtonStatus = (e) => {
+    const button = e.target;
+    if (button.innerText == 'Agregar a carrito') {
+        addCounter();
+        addItems(button);
+        button.innerText = 'Quitar del carrito';
+    } else {
+        removeCounter();
+        removeItems();
+        button.innerText = 'Agregar a carrito';
+    }
+}
+
+addItems = (button) => {
+    const img = button.dataset.img;
+    const title = button.dataset.title;
+    const price = button.dataset.price;
+
+    console.log(img, title,price);  
+    
+}
+
+removeItems = () => {
+
+}
+
+addCounter = () => {
+    let counterItems = parseInt(document.getElementById('counter-items').innerText);
+    let counter = document.getElementById('counter-items');
+    counterItems += 1;
+    counter.innerHTML = counterItems;
+}
+
+removeCounter = () => {
+    let counterItems = parseInt(document.getElementById('counter-items').innerText);
+    let counter = document.getElementById('counter-items');
+    counterItems -= 1
+    counter.innerHTML = counterItems;
 }
 
 elementEvent = (elementsData) => {
@@ -111,8 +160,16 @@ const containerCart = document.getElementById("container-cart");
 const containerCard = document.getElementById("container-card");
 
 showSectionCart = (e) => {
+
     console.log(containerCart.classList.contains("d-none"))
     if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")){
+
+    const containerCart = document.getElementById("container-cart");
+    const containerCard = document.getElementById("container-card");
+    // console.log(containerCart, containerCard)
+    // console.log(containerCart.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
+
         containerCart.classList.remove("d-none");
         containerCard.classList.remove("d-block");
         containerCard.classList.add("d-none");
@@ -124,6 +181,7 @@ showSectionCart = (e) => {
 };
 
 let cart = document.getElementById("image-cart")
+
 cart.addEventListener("click", showSectionCart);
 
 showSectionShop = (e) => {
@@ -197,4 +255,7 @@ showMenu = (e) => {
 let btnCloseInput = document.getElementById("close-input");
 btnCloseInput.addEventListener("click", showMenu);
 
+
+
+cart.addEventListener("click", showSectionCart);
 
