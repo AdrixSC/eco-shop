@@ -250,13 +250,10 @@ showMenu = (e) => {
         containerMenu.classList.remove("d-none");
         containerMenu.classList.add("d-block");
         containerInput.classList.remove("d-block");
+
     };*/
 };
 
 let btnCloseInput = document.getElementById("close-input");
 btnCloseInput.addEventListener("click", showMenu);
-
-
-
-cart.addEventListener("click", showSectionCart);
 
