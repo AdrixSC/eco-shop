@@ -95,45 +95,32 @@ chageButtonStatus = (e) => {
     }
 }
 
-// console.log(localStorage.getItem("cart"));
-
-addItems = (button) => {
-    const storage = localStorage.getItem("cart");
-    // console.log(localStorage.getItem("cart"));    
-    let arrayCart;
-    if (storage === null) {
-        arrayCart = [];
-    } else {
-        arrayCart = JSON.parse(storage);
-    }
-    arrayCart.push(button.dataset.id);
-    localStorage.setItem('cart', JSON.stringify(arrayCart));
+const arrayCart = [];
+addItems = (button) => { 
+    arrayCart.push(button.dataset.id);    
 }
 
-
-removeItems = (button) => {
-    let cartAdd = JSON.parse(localStorage.getItem('cart'));
-    const indexDelete = cartAdd.indexOf(button.dataset.id);
-    cartAdd.splice(indexDelete, 1);
-    localStorage.setItem('cart', JSON.stringify(cartAdd));  
-    filterProducst();
+removeItems = (button) => {    
+    const indexDelete = arrayCart.indexOf(button.dataset.id);   
+    arrayCart.splice(indexDelete, 1); 
+    localStorage.setItem('cart', JSON.stringify(arrayCart)); 
+    filterProducts(); 
 }
 
-filterProducst = (productsSelection) => {
-    // localStorage.setItem('products', JSON.stringify(products));
-    const cart = JSON.parse(localStorage.getItem('cart'));
-
-    let data = JSON.parse(localStorage.getItem('products'));
+filterProducts = (productsSelection) => { 
+    const cart = JSON.parse(localStorage.getItem('cart')); 
+    const data = JSON.parse(localStorage.getItem('products')); 
 
     let products = cart.map(id =>{
-        return data.find( element => {
+        return data.find(element => {
             return element.id === id;
         });
     });
 
-    console.log(products);    
-
+    paintCart(products);    
 }
+
+
 
 addCounter = () => {
     let counterItems = parseInt(document.getElementById('counter-items').innerText);
