@@ -2,8 +2,9 @@ const container = document.getElementById('container');
 window.addEventListener('load', () => {
     getJson();
 })
-let data;
+
 getJson = (e) => {
+    // limpiar contenedor de productos
     fetch(`https://api.mercadolibre.com/sites/MLM/search?q=ecologico`)
         .then(response => {
             response.json().then(json => {
@@ -50,21 +51,21 @@ paintDataJson = (json, Json) => {
 
 let searchInput = document.getElementById('search-products');
 
-filterProducts = ()=>{
-    let data = JSON.parse(localStorage.getItem('products'))
+filterProducts = () => {
+    let data = JSON.parse(localStorage.getItem('products'));
     //console.log(data); 
     let inputValue = searchInput.value.toLowerCase();
     //console.log(inputValue);
-    let prueba = data.filter(prodctF =>{ 
-        return prodctF.title.toLowerCase().indexOf(inputValue)>=0
+    let prueba = data.filter(prodctF => {
+        return prodctF.title.toLowerCase().indexOf(inputValue) >= 0
     });
     console.log(prueba);
     paintProducsFilters(prueba)
-    
-    }
+
+}
 searchInput.addEventListener('keyup', filterProducts);
 
-paintProducsFilters = (prueba)=>{ 
+paintProducsFilters = (prueba) => {
 
     container.innerText = '';
     prueba.forEach(producSelected => {
@@ -113,31 +114,53 @@ chageButtonStatus = (e) => {
 }
 
 const arrayCart = [];
-addItems = (button) => { 
-    arrayCart.push(button.dataset.id);    
+addItems = (button) => {
+    arrayCart.push(button.dataset.id);
 }
 
-removeItems = (button) => {    
-    const indexDelete = arrayCart.indexOf(button.dataset.id);   
-    arrayCart.splice(indexDelete, 1); 
-    localStorage.setItem('cart', JSON.stringify(arrayCart)); 
-    filterProducts(); 
+removeItems = (button) => {
+    const indexDelete = arrayCart.indexOf(button.dataset.id);
+    arrayCart.splice(indexDelete, 1);
+    localStorage.setItem('cart', JSON.stringify(arrayCart));
+    filterProducts();
 }
 
-filterProducts = (productsSelection) => { 
-    const cart = JSON.parse(localStorage.getItem('cart')); 
-    const data = JSON.parse(localStorage.getItem('products')); 
+filterProducts = (productsSelection) => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const data = JSON.parse(localStorage.getItem('products'));
 
-    let products = cart.map(id =>{
+    let products = cart.map(id => {
         return data.find(element => {
             return element.id === id;
         });
     });
+    localStorage.setItem('order', JSON.stringify(products));
+    // console.log(JSON.parse(localStorage.getItem('order')));
+    paintOrder();        
+}
 
-    console.log(products);
-    
+paintOrder = () => {
+    const containerOrder = document.getElementById('container-cart');
+    const order = JSON.parse(localStorage.getItem('order'));
+    containerOrder.innerHTML = "";
 
-    // paintCart(products);    
+    order.forEach(element => {
+        
+        let output = `
+            <div class="row boxGeneral">
+                <div class="col-md-6">
+                    <div class="imageProduct">
+                        <img src="${element.thumbnail}" alt="${element.title}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="titleProduct">${element.title}</div>
+                    <div class="priceProduct">$${element.price}</div>           
+                </div>
+            </div>
+        `;
+        containerOrder.insertAdjacentHTML('beforeend', output);
+    });   
 }
 
 
@@ -210,8 +233,15 @@ showSectionProduct = (e) => {
     containerCard.classList.add("d-block");
 }
 
-let cart = document.getElementById("image-cart").addEventListener("click", showSectionCart);
+
 let shop = document.getElementById("shop").addEventListener("click", showSectionProduct);
+
+cartList = () => {
+    document.getElementById("image-cart").addEventListener("click", showSectionCart);
+    document.getElementById("image-cart").addEventListener("click", paintOrder);
+}
+
+cartList();
 
 
 const containerMenu = document.getElementById("container-menu");
@@ -223,7 +253,7 @@ showInput = (e) => {
     containerMenu.classList.remove("d-block");
     containerMenu.classList.add("d-none");
 };
-    
+
 showMenu = (e) => {
     containerInput.classList.remove("d-block");
     containerInput.classList.add("d-none");
@@ -232,6 +262,10 @@ showMenu = (e) => {
 };
 
 let btnSearch = document.getElementById("btn-search").addEventListener("click", showInput);
-let btnCloseInput = document.getElementById("close-input").addEventListener("click", showMenu);
 
+btn = () => {
+    document.getElementById("close-input").addEventListener("click", showMenu);
+    document.getElementById("close-input").addEventListener("click", getJson);
+}
 
+btn();
