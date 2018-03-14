@@ -1,18 +1,21 @@
 
 //Add the car
-const addProducts = document.getElementById('products');
+// const addProducts = document.getElementById('products');
 
-addCar = () => {
-    e.preventDefaul();
+// addCar = () => {
+//     e.preventDefaul();
 
-    if (e.target.classList.contains('add-car')) {
-        const product = e.target.parentElement.parentElement;
-    }
-}
+//     if (e.target.classList.contains('add-car')) {
+//         const product = e.target.parentElement.parentElement;
 
-addProductsCar = (addProducts) => {
+//     }
+// }
 
-}
+// addProductsCar = (addProducts) => {
+
+
+// }
+
 
 
 const container = document.getElementById('container');
@@ -35,16 +38,16 @@ getJson = (e) => {
             console.log(error);
         });
 }
+
 // const data = (json, Json) => {
 //     const dataArray = json.results.concat(Json.results);
 //     console.log(dataArray);    
 //     return dataArray;
 // }
+
 paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);
     const productsData = localStorage.setItem('products', JSON.stringify(products));
-    
-    
 
     products.forEach(element => {
         let output = `
@@ -60,6 +63,7 @@ paintDataJson = (json, Json) => {
                         </a>
                   
                         <div data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
+
                 </div>
             `
         container.insertAdjacentHTML('beforeend', output);
@@ -140,19 +144,48 @@ chageButtonStatus = (e) => {
         button.innerText = 'Quitar del carrito';
     } else {
         removeCounter();
-        removeItems();
+        removeItems(button);
         button.innerText = 'Agregar a carrito';
     }
 }
 
+// console.log(localStorage.getItem("cart"));
+
 addItems = (button) => {
-    const img = button.dataset.img;
-    const title = button.dataset.title;
-    const price = button.dataset.price;
-    console.log(img, title, price);
+    const storage = localStorage.getItem("cart");
+    // console.log(localStorage.getItem("cart"));    
+    let arrayCart;
+    if (storage === null) {
+        arrayCart = [];
+    } else {
+        arrayCart = JSON.parse(storage);
+    }
+    arrayCart.push(button.dataset.id);
+    localStorage.setItem('cart', JSON.stringify(arrayCart));
 }
 
-removeItems = () => {
+
+removeItems = (button) => {
+    let cartAdd = JSON.parse(localStorage.getItem('cart'));
+    const indexDelete = cartAdd.indexOf(button.dataset.id);
+    cartAdd.splice(indexDelete, 1);
+    localStorage.setItem('cart', JSON.stringify(cartAdd));  
+    filterProducst();
+}
+
+filterProducst = (productsSelection) => {
+    // localStorage.setItem('products', JSON.stringify(products));
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    let data = JSON.parse(localStorage.getItem('products'));
+
+    let products = cart.map(id =>{
+        return data.find( element => {
+            return element.id === id;
+        });
+    });
+
+    console.log(products);    
 
 }
 
@@ -271,101 +304,45 @@ paintInfoModal = (dataSet, description) => {
 }
 
 
+const containerCart = document.getElementById("container-cart");
+const containerCard = document.getElementById("container-card");
 
 showSectionCart = (e) => {
-
-    console.log(containerCart.classList.contains("d-none"))
-    if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
-
-        const containerCart = document.getElementById("container-cart");
-        const containerCard = document.getElementById("container-card");
-        // console.log(containerCart, containerCard)
-        // console.log(containerCart.classList.contains("d-none"))
-        if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
-
-            containerCart.classList.remove("d-none");
-            containerCard.classList.remove("d-block");
-            containerCard.classList.add("d-none");
-        } else {
-            containerCart.classList.remove("d-block");
-            containerCard.classList.remove("d-none");
-            containerCard.classList.add("d-block");
-        }
-    };
-};
-let cart = document.getElementById("image-cart")
-
-
-cart.addEventListener("click", showSectionCart);
-
-showSectionShop = (e) => {
-    console.log("si entra")
-    console.log("cart", containerCart.classList.contains("d-none"))
-    console.log("card", containerCard.classList.contains("d-none"))
-    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true) {
-        containerCart.classList.remove("d-none");
-        containerCard.classList.remove("d-none");
-        containerCard.classList.add("d-block");
-    };
+    containerCart.classList.remove("d-none");
+    containerCart.classList.add("d-block");
+    containerCard.classList.remove("d-block");
+    containerCard.classList.add("d-none");
 };
 
-let shop = document.getElementById("shop");
-shop.addEventListener("click", showSectionShop)
+showSectionProduct = (e) => {
+    containerCart.classList.remove("d-block");
+    containerCart.classList.add("d-none");
+    containerCard.classList.remove("d-none");
+    containerCard.classList.add("d-block");
+}
+
+let cart = document.getElementById("image-cart").addEventListener("click", showSectionCart);
+let shop = document.getElementById("shop").addEventListener("click", showSectionProduct);
 
 
 const containerMenu = document.getElementById("container-menu");
 const containerInput = document.getElementById("container-input");
 
 showInput = (e) => {
-    if (containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")) {
-        containerInput.classList.remove("d-none");
-        containerMenu.classList.remove("d-block");
-        containerMenu.classList.add("d-none");
-    } else {
-        console.log("chido")
-        containerInput.classList.remove("d-block");
-        containerMenu.classList.remove("d-none");
-        containerMenu.classList.add("d-block");
-    }
+    containerInput.classList.remove("d-none");
+    containerInput.classList.add("d-block");
+    containerMenu.classList.remove("d-block");
+    containerMenu.classList.add("d-none");
 };
-
-let btnSearch = document.getElementById("btn-search");
-btnSearch.addEventListener("click", showInput);
-
+    
 showMenu = (e) => {
-    containerInput.innerText = "";
-    containerInput.innerHTML = `<div id="container-menu" class="container d-block">
-    <nav class="row menu">
-        <div class="col-md-6">
-            <div class="ecommerce">
-                <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
-                <ul>
-                    <a id="shop"><li>Shop</li></a>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="itemsNumber">0 ITEMS $0.00</div>
-        </div>
-        <div class="col-md-2">
-            <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-        <div class="col-md-1 search">
-            <a id="btn-search"><i class="fas fa-search"></i></a>
-        </div>
-    </nav>
-</div>`
-    console.log("menu", containerMenu.classList.contains("d-none"));
-    console.log("input", containerInput.classList.contains("d-block"))
-        /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
-            containerMenu.classList.remove("d-none");
-            containerMenu.classList.add("d-block");
-            containerInput.classList.remove("d-block");
-
-        };*/
+    containerInput.classList.remove("d-block");
+    containerInput.classList.add("d-none");
+    containerMenu.classList.remove("d-none");
+    containerMenu.classList.add("d-block");
 };
 
-let btnCloseInput = document.getElementById("close-input");
-btnCloseInput.addEventListener("click", showMenu);
+let btnSearch = document.getElementById("btn-search").addEventListener("click", showInput);
+let btnCloseInput = document.getElementById("close-input").addEventListener("click", showMenu);
+
+
