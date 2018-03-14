@@ -206,7 +206,21 @@ body {
 
 #eye:hover {
     background-color: #5ac6f8;
+}
 
 .logo {
     width: 25%;
+}
+
+.search {
+    margin-top: 10px;
+}
+
+.search:hover {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.input-group-text {
+    cursor: pointer;
 }

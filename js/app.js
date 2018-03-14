@@ -107,20 +107,70 @@ paintInfoModal = (dataSet, description) => {
 
 }
 
+const containerCart = document.getElementById("container-cart");
+const containerCard = document.getElementById("container-card");
+
 showSectionCart = (e) => {
-    const containerCart = document.getElementById("container-cart");
-    const containerCard = document.getElementById("container-card");
-    console.log(containerCart, containerCard)
     console.log(containerCart.classList.contains("d-none"))
     if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")){
-        console.log("si entra")
         containerCart.classList.remove("d-none");
         containerCard.classList.remove("d-block");
         containerCard.classList.add("d-none");
-    };
+    } else {
+        containerCart.classList.remove("d-block");
+        containerCard.classList.remove("d-none");
+        containerCard.classList.add("d-block");
+    }
 };
 
 let cart = document.getElementById("image-cart")
 cart.addEventListener("click", showSectionCart);
+
+showSectionShop = (e) => {
+    console.log("si entra")
+    console.log("cart", containerCart.classList.contains("d-none"))
+    console.log("card", containerCard.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true){
+        containerCart.classList.remove("d-none");
+        containerCard.classList.remove("d-none");
+        containerCard.classList.add("d-block");
+    };
+};
+
+let shop = document.getElementById("shop");
+shop.addEventListener("click", showSectionShop)
+
+
+const containerMenu = document.getElementById("container-menu");
+const containerInput = document.getElementById("container-input");
+
+showInput = (e) => {
+    if(containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")){
+        containerInput.classList.remove("d-none");
+        containerMenu.classList.remove("d-block");
+        containerMenu.classList.add("d-none");
+    } else {
+        console.log("chido")
+        containerInput.classList.remove("d-block");
+        containerMenu.classList.remove("d-none");
+        containerMenu.classList.add("d-block");
+    }
+};
+
+let btnSearch = document.getElementById("btn-search");
+btnSearch.addEventListener("click", showInput);
+
+showMenu = (e) => {
+    console.log("menu", containerMenu.classList.contains("d-none"));
+    console.log("input", containerInput.classList.contains("d-block"))
+    if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+        containerMenu.classList.remove("d-none");
+        containerMenu.classList.add("d-block");
+        containerInput.classList.remove("d-block");
+    }
+}
+
+let btnCloseInput = document.getElementById("close-input");
+btnCloseInput.addEventListener("click", showMenu);
 
 
