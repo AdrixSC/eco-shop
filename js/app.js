@@ -1,4 +1,20 @@
 
+//Add the car
+const addProducts = document.getElementById('products');
+
+addCar = () => {
+    e.preventDefaul();
+
+    if (e.target.classList.contains('add-car')) {
+        const product = e.target.parentElement.parentElement;
+    }
+}
+
+addProductsCar = (addProducts) => {
+
+}
+
+
 const container = document.getElementById('container');
 window.addEventListener('load', () => {
     getJson();
@@ -26,6 +42,10 @@ getJson = (e) => {
 // }
 paintDataJson = (json, Json) => {
     const products = json.results.concat(Json.results);
+    const productsData = localStorage.setItem('products', JSON.stringify(products));
+    
+    
+
     products.forEach(element => {
         let output = `
                 <div class="col-md-3 mb-3">
@@ -38,7 +58,8 @@ paintDataJson = (json, Json) => {
                         <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"> 
                             <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">                    
                         </a>
-                        <div data-id="${element.id}" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
+                  
+                        <div data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
             `
         container.insertAdjacentHTML('beforeend', output);
@@ -47,13 +68,108 @@ paintDataJson = (json, Json) => {
     elementEvent(elementsData);
     let buttonAddCart = document.getElementsByClassName('buttonShop');
     converToArray(buttonAddCart);
+
+
 }
+
+let searchInput = document.getElementById('search-products');
+
+filterProducts = ()=>{
+    let data = JSON.parse(localStorage.getItem('products'))
+    //console.log(data); 
+    let inputValue = searchInput.value.toLowerCase();
+    //console.log(inputValue);
+    let prueba = data.filter(prodctF =>{ 
+        return prodctF.title.toLowerCase().indexOf(inputValue)>=0
+    });
+    console.log(prueba);
+    paintProducsFilters(prueba)
+    
+    }
+searchInput.addEventListener('keyup', filterProducts);
+
+paintProducsFilters = (prueba)=>{
+    console.log(prueba);
+    
+    
+    
+
+     container.innerText = '';
+     prueba.forEach(producSelected => {
+
+        let templateFilters = `
+                <div class="col-md-3 mb-3">
+                    <div class="boxInner">
+                        <div class="image">
+                            <img src="${producSelected.thumbnail}" alt="${producSelected.title}">
+                        </div>
+                        <div class="text elements-data">${producSelected.title}</div>
+                        <div class="price">$${producSelected.price} mxn</div> 
+                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}"> 
+                            <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}">                    
+                        </a>
+                  
+                        <div data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" class="buttonShop">Agregar a carrito</div>                   
+                </div>
+            `
+        container.insertAdjacentHTML('beforeend', templateFilters);
+    })
+    let elementsData = document.getElementsByClassName('elements-data');
+    elementEvent(elementsData);
+    let buttonAddCart = document.getElementsByClassName('buttonShop');
+    converToArray(buttonAddCart);
+
+
+
+
+}
+
 converToArray = (buttonAddCart) => {
     let addItemsId = Array.from(buttonAddCart);
     addItemsId.forEach(item => {
         item.addEventListener('click', chageButtonStatus);
     })
+
 }
+
+chageButtonStatus = (e) => {
+    const button = e.target;
+    if (button.innerText == 'Agregar a carrito') {
+        addCounter();
+        addItems(button);
+        button.innerText = 'Quitar del carrito';
+    } else {
+        removeCounter();
+        removeItems();
+        button.innerText = 'Agregar a carrito';
+    }
+}
+
+addItems = (button) => {
+    const img = button.dataset.img;
+    const title = button.dataset.title;
+    const price = button.dataset.price;
+    console.log(img, title, price);
+}
+
+removeItems = () => {
+
+}
+
+addCounter = () => {
+    let counterItems = parseInt(document.getElementById('counter-items').innerText);
+    let counter = document.getElementById('counter-items');
+    counterItems += 1;
+    counter.innerHTML = counterItems;
+}
+
+removeCounter = () => {
+    let counterItems = parseInt(document.getElementById('counter-items').innerText);
+    let counter = document.getElementById('counter-items');
+    counterItems -= 1
+    counter.innerHTML = counterItems;
+}
+
 chageButtonStatus = (e) => {
     const button = e.target;
     if (button.innerText == 'Agregar a carrito') {
@@ -144,8 +260,8 @@ paintInfoModal = (dataSet, description) => {
     titleStars.innerHTML = `
                         <h5 class="modal-title">${dataSet.title}</h5>
                         <div class="stars">${dataSet.rating}
-                            <i class="fas fa-star"></i>                           
-                        </div>         
+                            <i class="fas fa-star"></i>
+                        </div>
     `;
     modalBody.innerHTML = `
                         <p>Lugar de origen: ${dataSet.state}</p>
@@ -153,16 +269,103 @@ paintInfoModal = (dataSet, description) => {
                         <div class="priceProduct">$ ${dataSet.price} mxn</div>
     `;
 }
+
+
+
 showSectionCart = (e) => {
-    const containerCart = document.getElementById("container-cart");
-    const containerCard = document.getElementById("container-card");
-    // console.log(containerCart, containerCard)
-    // console.log(containerCart.classList.contains("d-none"))
+
+    console.log(containerCart.classList.contains("d-none"))
     if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
-        containerCart.classList.remove("d-none");
-        containerCard.classList.remove("d-block");
-        containerCard.classList.add("d-none");
+
+        const containerCart = document.getElementById("container-cart");
+        const containerCard = document.getElementById("container-card");
+        // console.log(containerCart, containerCard)
+        // console.log(containerCart.classList.contains("d-none"))
+        if (containerCart.classList.contains("d-none") && containerCard.classList.contains("d-block")) {
+
+            containerCart.classList.remove("d-none");
+            containerCard.classList.remove("d-block");
+            containerCard.classList.add("d-none");
+        } else {
+            containerCart.classList.remove("d-block");
+            containerCard.classList.remove("d-none");
+            containerCard.classList.add("d-block");
+        }
     };
 };
 let cart = document.getElementById("image-cart")
+
+
 cart.addEventListener("click", showSectionCart);
+
+showSectionShop = (e) => {
+    console.log("si entra")
+    console.log("cart", containerCart.classList.contains("d-none"))
+    console.log("card", containerCard.classList.contains("d-none"))
+    if (containerCart.classList.contains("d-none") == false && containerCard.classList.contains("d-none") == true) {
+        containerCart.classList.remove("d-none");
+        containerCard.classList.remove("d-none");
+        containerCard.classList.add("d-block");
+    };
+};
+
+let shop = document.getElementById("shop");
+shop.addEventListener("click", showSectionShop)
+
+
+const containerMenu = document.getElementById("container-menu");
+const containerInput = document.getElementById("container-input");
+
+showInput = (e) => {
+    if (containerInput.classList.contains("d-none") && containerMenu.classList.contains("d-block")) {
+        containerInput.classList.remove("d-none");
+        containerMenu.classList.remove("d-block");
+        containerMenu.classList.add("d-none");
+    } else {
+        console.log("chido")
+        containerInput.classList.remove("d-block");
+        containerMenu.classList.remove("d-none");
+        containerMenu.classList.add("d-block");
+    }
+};
+
+let btnSearch = document.getElementById("btn-search");
+btnSearch.addEventListener("click", showInput);
+
+showMenu = (e) => {
+    containerInput.innerText = "";
+    containerInput.innerHTML = `<div id="container-menu" class="container d-block">
+    <nav class="row menu">
+        <div class="col-md-6">
+            <div class="ecommerce">
+                <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
+                <ul>
+                    <a id="shop"><li>Shop</li></a>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="itemsNumber">0 ITEMS $0.00</div>
+        </div>
+        <div class="col-md-2">
+            <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="col-md-1 search">
+            <a id="btn-search"><i class="fas fa-search"></i></a>
+        </div>
+    </nav>
+</div>`
+    console.log("menu", containerMenu.classList.contains("d-none"));
+    console.log("input", containerInput.classList.contains("d-block"))
+        /*if(containerMenu.classList.contains("d-none") == true && containerInput.classList.contains("d-block") == false){
+            containerMenu.classList.remove("d-none");
+            containerMenu.classList.add("d-block");
+            containerInput.classList.remove("d-block");
+
+        };*/
+};
+
+let btnCloseInput = document.getElementById("close-input");
+btnCloseInput.addEventListener("click", showMenu);

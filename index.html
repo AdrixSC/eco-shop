@@ -12,29 +12,36 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="container-menu" class="container d-block">
         <nav class="row menu">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="ecommerce">
                     <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
                     <ul>
-                        <li>Shop</li>
+                        <a id="shop"><li>Shop</li></a>
                         <li>About</li>
-                        <li>Blog</li>
                         <li>Contact</li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="itemsNumber"><span id="counter-items">0</span> ITEMS $0.00</div>
+                 <div class="itemsNumber"><span id="counter-items">0</span> ITEMS $0.00</div>
             </div>
             <div class="col-md-2">
                 <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
-            <div>
-                <i class="fas fa-search"></i>
+            <div class="col-md-1 search">
+                <a id="btn-search"><i class="fas fa-search"></i></a>
+                
             </div>
         </nav>
+    </div>
+
+    <div id="container-input" class="container d-none">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="search-products" placeholder="Busca algún producto" aria-label="Username" aria-describedby="basic-addon1">
+            <span id="close-input" class="input-group-text">x</span>
+        </div>
     </div>
 
     <div id="container-card" class="container d-block">
