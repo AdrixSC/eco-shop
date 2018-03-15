@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
 
 getJson = (e) => {
     // limpiar contenedor de productos
+    
     fetch(`https://api.mercadolibre.com/sites/MLM/search?q=ecologico`)
         .then(response => {
             response.json().then(json => {
@@ -103,14 +104,18 @@ converToArray = (buttonAddCart) => {
 
 chageButtonStatus = (e) => {
     const button = e.target;
+
     if (button.innerText == 'Agregar a carrito') {
         addCounter();
         addItems(button);
         button.innerText = 'Quitar del carrito';
+        button.style.backgroundColor = '#35B729';
     } else {
         removeCounter();
         removeItems(button);
         button.innerText = 'Agregar a carrito';
+        button.style.backgroundColor = '#0c4d6c';
+        button.style
     }
 }
 
@@ -137,16 +142,16 @@ filterProducts = (productsSelection) => {
     });
     localStorage.setItem('order', JSON.stringify(products));
     // console.log(JSON.parse(localStorage.getItem('order')));
-    paintOrder();        
+    // paintOrder();        
 }
 
+const priceArray = [];
 paintOrder = () => {
     const containerOrder = document.getElementById('container-cart');
     const order = JSON.parse(localStorage.getItem('order'));
     containerOrder.innerHTML = "";
 
-    order.forEach(element => {
-        
+    order.forEach(element => {        
         let output = `
             <div class="row boxGeneral">
                 <div class="col-md-6">
@@ -159,12 +164,21 @@ paintOrder = () => {
                     <div class="priceProduct">$${element.price}</div>           
                 </div>
             </div>
-        `;
+        `;      
         containerOrder.insertAdjacentHTML('beforeend', output);
-    });   
+        localStorage.setItem('price', JSON)
+    }); 
+    
+    const price = document.getElementsByClassName('priceProduct');
+    priceTotal(price);    
 }
 
-
+priceTotal = (price) => {
+    const priceArray = Array.from(price);
+    let algo = priceArray.reduce((a, b)=>{
+        console.log(element.innerText);        
+    });
+}
 
 addCounter = () => {
     let counterItems = parseInt(document.getElementById('counter-items').innerText);
@@ -204,15 +218,15 @@ paintInfoModal = (dataSet, description) => {
     const modalBody = document.getElementById('modal-body');
     containerImg.innerHTML = `<img src="${dataSet.img}" alt="${dataSet.title}">`;
     titleStars.innerHTML = `
-                        <h5 class="modal-title">${dataSet.title}</h5>
-                        <div class="stars">${dataSet.rating}
-                            <i class="fas fa-star"></i>
+                        <h5 class="modal-title color-blue">${dataSet.title}</h5>
+                        <div class="stars font-weight-bold">${dataSet.rating}
+                            <i class="color-blue fas fa-star"></i>
                         </div>
     `;
     modalBody.innerHTML = `
                         <p>Lugar de origen: ${dataSet.state}</p>
                         <p>${description}</p>
-                        <div class="priceProduct">$ ${dataSet.price} mxn</div>
+                        <div class="color-blue priceProduct text-center font-weight-bold">$ ${dataSet.price} mxn</div>
     `;
 }
 
