@@ -116,8 +116,7 @@ body {
 }
 
 .priceProduct {
-    color: gray;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 .priceSubtotal {
@@ -238,4 +237,8 @@ body {
     text-align: center;
     padding: 12px;
     padding-left: 400px;
+}
+
+.color-blue {
+    color: #1583b7;
 }
