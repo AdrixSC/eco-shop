@@ -1,4 +1,5 @@
 const container = document.getElementById('container');
+const containerAll = document.getElementById("container-all")
 window.addEventListener('load', () => {
     getJson();
 })
@@ -68,7 +69,7 @@ searchInput.addEventListener('keyup', filterProducts);
 
 paintProducsFilters = (prueba) => {
 
-    container.innerText = '';
+    containerAll.innerText = '';
     prueba.forEach(producSelected => {
 
         let templateFilters = `
@@ -85,7 +86,7 @@ paintProducsFilters = (prueba) => {
                         <div data-id"${producSelected.id}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
             `
-        container.insertAdjacentHTML('beforeend', templateFilters);
+            containerAll.insertAdjacentHTML('beforeend', templateFilters);
     })
     let elementsData = document.getElementsByClassName('elements-data');
     elementEvent(elementsData);
@@ -264,15 +265,11 @@ const containerInput = document.getElementById("container-input");
 showInput = (e) => {
     containerInput.classList.remove("d-none");
     containerInput.classList.add("d-block");
-    containerMenu.classList.remove("d-block");
-    containerMenu.classList.add("d-none");
 };
 
 showMenu = (e) => {
     containerInput.classList.remove("d-block");
     containerInput.classList.add("d-none");
-    containerMenu.classList.remove("d-none");
-    containerMenu.classList.add("d-block");
 };
 
 let btnSearch = document.getElementById("btn-search").addEventListener("click", showInput);
