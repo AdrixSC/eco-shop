@@ -14,7 +14,9 @@ Promover las sustenabildad mediante la  venta de productos ecológicos/sustentab
 
 CONTENIDO-FUNCIONALIDADES.
 
-El contenido de el sitio consiste en obtener  de la API de Mercado Libre las imagenes de cada producto. Cada uno de ellos ofrece la descripción  del articulo el precio y calificacion dada de otros usuarios que se muestra atravez de un modal.
+1. El contenido de el sitio consiste en obtener  de la API de Mercado Libre las imagenes de cada producto. Cada uno de ellos ofrece la descripción  del articulo el precio y calificacion dada de otros usuarios que se muestra atravez de un modal.
+2. El usuario tiene la manera  de poder agrgar y quitar productos del carrito.
+3. Puede hacer busca de productos en especifico se filtran los productos.
 
 DESARROLLO.
 
@@ -28,4 +30,6 @@ Integrar la API MERCADO LIBRE, una vez generada la API Key, se extrae la data qu
 
 Integrar la API DE PayPal, una vez generada la cuenta en su pagina, el token y una app que genera un ID para poder usar en el código que da la API y poderlo integrar al nuestro y también integrar el botón de PayPal.
 
-![Vista principal](assets/images/ecommerce-all.png)
+![Vista principal](assets/images/ecommerce.png)
+![Busqueda especifica](assets/images/ecommerce-all.png)
+![Informacion por producto](assets/images/ecommerce-4.png)
