@@ -8,7 +8,7 @@ body {
 
 .menu {
     background-color: white;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     color: #0084CD;
     font-weight: lighter;
     padding: 10px;
@@ -222,4 +222,20 @@ body {
 
 .input-group-text {
     cursor: pointer;
+}
+
+.w-100 {
+    width: 30%;
+}
+
+.copy {
+    background-color: #0c4d6c;
+    color: white;
+    height: 50px;
+}
+
+.copy p {
+    text-align: center;
+    padding: 12px;
+    padding-left: 400px;
 }
