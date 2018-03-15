@@ -198,6 +198,18 @@ body {
     width: auto;
 }
 
+.copy {
+    background-color: #0c4d6c;
+    color: white;
+    height: 50px;
+}
+
+.copy > p {
+    padding: 12px;
+    margin: 0 auto;
+
+}
+
 .description-modal {
     display: block;
 }
@@ -228,16 +240,6 @@ body {
     width: 30%;
 }
 
-.copy {
-    background-color: #0c4d6c;
-    color: white;
-    height: 50px;
-}
-
-.copy p {
-    padding: 12px;
-    padding-left: 400px;
-}
 
 .color-blue {
     color: #1583b7;
@@ -265,4 +267,5 @@ body {
   background-color: white;
   text-align: center;
   font-size: 30px;
+  margin: 20px;
 }

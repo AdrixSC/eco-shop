@@ -183,6 +183,7 @@ priceTotal = (price) => {
 
     let template2 = `
       <div class="price-style">Total a pagar:$${total3}</div>
+      <div id="paypal-button-container"></div>
       `;
       containerOrder.insertAdjacentHTML('beforeend', template2);
       getPayPal(total3);
