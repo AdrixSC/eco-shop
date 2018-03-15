@@ -13,31 +13,41 @@
 
 <body>
     <div id="container-menu" class="container d-block">
-        <nav class="row menu">
-            <div class="col-md-6">
-                <div class="ecommerce">
-                    <h1><img class="logo" src="assets/images/logo-ecoshop.png" alt="logo"></h1>
-                    <ul>
-                        <a id="shop">
-                            <li>Shop</li>
-                        </a>
-                        <li>About</li>
-                        <li>Contact</li>
-                    </ul>
+        <nav class="navbar navbar-expand-lg navbar-light menu">
+                        <img class="logo" src="assets/images/logo-ecoshop.png" alt="logo">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                            </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a id="shop" class="nav-link" href="#">Shop <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">About</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link disabled">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="itemsNumber"><span id="counter-items">0</span> ITEMS</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="col-1 col-sm-1 col-md-2">
+                            <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                        <div class="search">
+                            <a id="btn-search"><i class="fas fa-search"></i></a>
+                        </div>
+                  </form>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="itemsNumber"><span id="counter-items">0</span> ITEMS $0.00</div>
-            </div>
-            <div class="col-md-2">
-                <a id="image-cart"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-            <div class="col-md-1 search">
-                <a id="btn-search"><i class="fas fa-search"></i></a>
-
-            </div>
         </nav>
     </div>
+ 
 
     <div id="container-input" class="container d-none">
         <div class="input-group mb-3">
@@ -45,7 +55,7 @@
             <span id="close-input" class="input-group-text">x</span>
         </div>
     </div>
-
+   <div class="container-all">
     <div id="container-card" class="container d-block">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -89,6 +99,7 @@
         </div> -->
         </div>
     </div>
+</div>
 
     <!--MODAL CART-->
     <div id="modal" class="modal" tabindex="-1" role="dialog">
