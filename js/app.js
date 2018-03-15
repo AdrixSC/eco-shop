@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
 getJson = (e) => {
     // limpiar contenedor de productos
-    
+
     fetch(`https://api.mercadolibre.com/sites/MLM/search?q=ecologico`)
         .then(response => {
             response.json().then(json => {
@@ -69,7 +69,7 @@ searchInput.addEventListener('keyup', filterProducts);
 
 paintProducsFilters = (prueba) => {
 
-    containerAll.innerText = '';
+    container.innerText = '';
     prueba.forEach(producSelected => {
 
         let templateFilters = `
@@ -86,7 +86,7 @@ paintProducsFilters = (prueba) => {
                         <div data-id"${producSelected.id}" class="buttonShop">Agregar a carrito</div>                   
                 </div>
             `
-            containerAll.insertAdjacentHTML('beforeend', templateFilters);
+        container.insertAdjacentHTML('beforeend', templateFilters);
     })
     let elementsData = document.getElementsByClassName('elements-data');
     elementEvent(elementsData);
@@ -151,7 +151,7 @@ paintOrder = () => {
     const order = JSON.parse(localStorage.getItem('order'));
     containerOrder.innerHTML = "";
 
-    order.forEach(element => {        
+    order.forEach(element => {
         let output = `
             <div class="row boxGeneral">
                 <div class="col-md-6">
@@ -164,19 +164,19 @@ paintOrder = () => {
                     <div class="priceProduct">$${element.price}</div>           
                 </div>
             </div>
-        `;      
+        `;
         containerOrder.insertAdjacentHTML('beforeend', output);
         localStorage.setItem('price', JSON)
-    }); 
-    
+    });
+
     const price = document.getElementsByClassName('priceProduct');
-    priceTotal(price);    
+    priceTotal(price);
 }
 
 priceTotal = (price) => {
     const priceArray = Array.from(price);
-    let algo = priceArray.reduce((a, b)=>{
-        console.log(element.innerText);        
+    let algo = priceArray.reduce((a, b) => {
+        console.log(element.innerText);
     });
 }
 
