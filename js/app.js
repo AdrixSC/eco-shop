@@ -34,9 +34,9 @@ paintDataJson = (json, Json) => {
                             <img src="${element.thumbnail}" alt="${element.title}">
                         </div>
                         <div class="text elements-data">${element.title}</div>
-                        <div class="price">$${element.price} mxn</div> 
-                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}"> 
-                            <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">                    
+                        <div class="price">$${element.price} mxn</div>
+                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
+                            <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${element.price}" data-title="${element.title}" data-img="${element.thumbnail}" data-id="${element.id}" data-rating="${element.reviews.rating_average}" data-state="${element.address.state_name}">
                         </a>
                         <div data-id="${element.id}" class="buttonShop">Agregar a carrito</div>
                 </div>
@@ -55,7 +55,7 @@ let searchInput = document.getElementById('search-products');
 
 filterProducts = () => {
     let data = JSON.parse(localStorage.getItem('products'));
-    //console.log(data); 
+    //console.log(data);
     let inputValue = searchInput.value.toLowerCase();
     //console.log(inputValue);
     let prueba = data.filter(prodctF => {
@@ -79,11 +79,11 @@ paintProducsFilters = (prueba) => {
                             <img src="${producSelected.thumbnail}" alt="${producSelected.title}">
                         </div>
                         <div class="text elements-data">${producSelected.title}</div>
-                        <div class="price">$${producSelected.price} mxn</div> 
-                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}"> 
-                            <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}">                    
+                        <div class="price">$${producSelected.price} mxn</div>
+                        <a href="#modal" data-toggle="modal" class="elements-data" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}">
+                            <img id="eye" src="assets/images/eye.png" class="elements-data border border-info rounded-circle p-1 mb-1" data-price="${producSelected.price}" data-title="${producSelected.title}" data-img="${producSelected.thumbnail}" data-id="${producSelected.id}" data-rating="${producSelected.reviews.rating_average}" data-state="${producSelected.address.state_name}">
                         </a>
-                        <div data-id"${producSelected.id}" class="buttonShop">Agregar a carrito</div>                   
+                        <div data-id"${producSelected.id}" class="buttonShop">Agregar a carrito</div>
                 </div>
             `
         container.insertAdjacentHTML('beforeend', templateFilters);
@@ -142,15 +142,15 @@ filterProducts = (productsSelection) => {
     });
     localStorage.setItem('order', JSON.stringify(products));
     // console.log(JSON.parse(localStorage.getItem('order')));
-    // paintOrder();        
+    paintOrder();
 }
+
+const containerOrder = document.getElementById('container-cart');
 
 const priceArray = [];
 paintOrder = () => {
-    const containerOrder = document.getElementById('container-cart');
     const order = JSON.parse(localStorage.getItem('order'));
     containerOrder.innerHTML = "";
-
     order.forEach(element => {
         let output = `
             <div class="row boxGeneral">
@@ -161,25 +161,80 @@ paintOrder = () => {
                 </div>
                 <div class="col-md-6">
                     <div class="titleProduct">${element.title}</div>
-                    <div class="priceProduct">$${element.price}</div>           
+                    <div class="priceProduct">$<span class="sumProduct">${element.price}</span></div>
+
                 </div>
             </div>
         `;
-        containerOrder.insertAdjacentHTML('beforeend', output);
-        localStorage.setItem('price', JSON)
+    containerOrder.insertAdjacentHTML('beforeend', output);
+    localStorage.setItem('price', JSON)
     });
 
-    const price = document.getElementsByClassName('priceProduct');
+    const price = document.getElementsByClassName('sumProduct');
     priceTotal(price);
 }
+/////////abi
 
 priceTotal = (price) => {
     const priceArray = Array.from(price);
-    let algo = priceArray.reduce((a, b) => {
-        console.log(element.innerText);
-    });
+    let total2 = priceArray.map(element => parseInt(element.innerText));
+    let total3 = total2.reduce((a,b) => a + b)
+    console.log(total3);
+
+    let template2 = `
+      <div class="price-style">Total a pagar:$${total3}</div>
+      <div id="paypal-button-container"></div>
+      `;
+      containerOrder.insertAdjacentHTML('beforeend', template2);
+      getPayPal(total3);
+
+
+}
+//////   comienza lo de paypal   ///////////////////////////////////////////////////////////////////7
+ getPayPal = (total3) => {
+   paypal.Button.render({
+
+              env: 'sandbox', // sandbox | production
+
+              // PayPal Client IDs - replace with your own
+              // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+              client: {
+                  sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                  production: 'Ac2b_qAucwEeMyFHqI9PXqpTrg1Dv5wThMV3lfLXFSuNg3NBJj3eMuRzOgXTPtkDLRGFGGBX61M_Kuw_'
+              },
+
+              // Show the buyer a 'Pay Now' button in the checkout flow
+              commit: true,
+
+              // payment() is called when the button is clicked
+              payment: function(data, actions) {
+
+                  // Make a call to the REST api to create the payment
+                  return actions.payment.create({
+                      payment: {
+                          transactions: [
+                              {
+                                  amount: { total: `${total3}`, currency: 'MXN' }
+                              }
+                          ]
+                      }
+                  });
+              },
+
+              // onAuthorize() is called when the buyer approves the payment
+              onAuthorize: function(data, actions) {
+
+                  // Make a call to the REST api to execute the payment
+                  return actions.payment.execute().then(function() {
+                      window.alert('Payment Complete!');
+                  });
+              }
+
+          }, '#paypal-button-container');
 }
 
+
+/////
 addCounter = () => {
     let counterItems = parseInt(document.getElementById('counter-items').innerText);
     let counter = document.getElementById('counter-items');
