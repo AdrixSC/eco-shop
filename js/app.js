@@ -131,11 +131,11 @@ removeItems = (button) => {
     const indexDelete = arrayCart.indexOf(button.dataset.id);
     arrayCart.splice(indexDelete, 1);
     localStorage.setItem('cart', JSON.stringify(arrayCart));
-    filterProducts();
+    filterProductsStorage();
 }
 
-//funcion para filtrar productos....
-filterProducts = (productsSelection) => {
+//funcion para filtrar productos del local storage
+filterProductsStorage = (productsSelection) => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const data = JSON.parse(localStorage.getItem('products'));
 
