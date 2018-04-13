@@ -14,6 +14,10 @@ body {
     background-color: #5ac6f8;
 }
 
+#paypal-button-container {
+    text-align: center;
+}
+
 .menu {
     background-color: white;
     color: #0084CD;
@@ -204,10 +208,9 @@ body {
     height: 50px;
 }
 
-.copy > p {
+.copy>p {
     padding: 12px;
     margin: 0 auto;
-
 }
 
 .description-modal {
@@ -259,13 +262,9 @@ body {
     padding-left: 10px;
 }
 
-#paypal-button-container {
-    text-align: center;
-}
-
 .price-style {
-  background-color: white;
-  text-align: center;
-  font-size: 30px;
-  margin: 20px;
+    background-color: white;
+    text-align: center;
+    font-size: 30px;
+    margin: 20px;
 }
